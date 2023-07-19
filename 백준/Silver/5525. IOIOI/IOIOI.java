@@ -3,6 +3,7 @@ import java.io.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        BufferedReader br = new BufferedReader(new FileReader("output.txt"));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         int N = Integer.parseInt(br.readLine());
@@ -10,10 +11,13 @@ public class Main {
         String S = br.readLine();
         String tar = "I" + "OI".repeat(N);
         int cnt = 0;
-        for(int i=0; i<=M-tar.length(); i++){
-            String a = S.substring(i, i + tar.length());
-            if(tar.equals(a)) cnt++;
+        int currentIndex = 0;
+
+        while ((currentIndex = S.indexOf(tar, currentIndex)) != -1) {
+            cnt++;
+            currentIndex += 1;
         }
+
         bw.append(cnt+"");
 
         bw.flush();
